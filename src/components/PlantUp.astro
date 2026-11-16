@@ -129,7 +129,22 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
         <div class="pu-sprig__text">
           <h3 class="pu-h3">Sprig</h3>
           <p class="pu-sub">Das Maskottchen reagiert auf den Zustand der Pflanze.</p>
+          <p class="pu-sprig__note">
+            Sprig und seine Animationen habe ich mit KI generiert, freigestellt, aufbereitet und in
+            die App eingebaut. Je nach Zustand der Pflanze zeigt die App die passende Animation.
+          </p>
         </div>
+        <!-- Standbild zuerst; die Animation (466 KB) wird erst geladen, wenn die Sektion sichtbar wird. -->
+        <img
+          class="pu-sprig__img"
+          src="/img/sprig-happy-still.webp"
+          data-anim="/img/sprig-happy.webp"
+          width="400"
+          height="450"
+          alt="Maskottchen Sprig, eine fröhliche grüne Figur mit Blatt auf dem Kopf"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       <ul class="pu-sprig__cards">
         {
@@ -293,6 +308,19 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
     line-height: 1.45;
   }
 
+  .pu-sprig__note {
+    max-width: 34em;
+    margin-top: 0.875rem;
+    line-height: 1.55;
+    color: var(--text-2);
+    text-wrap: pretty;
+  }
+
+  .pu-sprig__img {
+    width: min(64vw, 17rem);
+    margin: 1.5rem auto 0;
+  }
+
   .pu-sprig__cards {
     display: grid;
     gap: 1rem;
@@ -399,6 +427,18 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
       margin-top: 5rem;
     }
 
+    .pu-sprig__head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .pu-sprig__img {
+      width: min(100%, 22rem);
+      margin: 0 auto;
+    }
+
     .pu-sprig__cards {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.5rem;
@@ -449,5 +489,21 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
       { threshold: 0.35 },
     );
     videos.forEach((v) => io.observe(v));
+
+    // Sprig-Animation erst laden, wenn das Bild in die Nähe des Sichtbereichs kommt.
+    const sprigImg = document.querySelector<HTMLImageElement>('img[data-anim]');
+    if (sprigImg) {
+      const imgIo = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          imgIo.disconnect();
+          const anim = new Image();
+          anim.onload = () => (sprigImg.src = anim.src);
+          anim.src = sprigImg.dataset.anim!;
+        },
+        { rootMargin: '200px' },
+      );
+      imgIo.observe(sprigImg);
+    }
   }
 </script>

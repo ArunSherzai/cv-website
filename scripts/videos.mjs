@@ -27,3 +27,14 @@ for (const v of videos) {
     `${out}/${v.name}.webp`]);
   console.log('fertig:', v.name);
 }
+
+// Sprig-Maskottchen: transparentes GIF (3,3 MB) als animiertes WebP unter 500 KB.
+// Nur zuschneiden und Bildrate senken; Skalieren würde die Datei hier größer machen.
+mkdirSync('public/img', { recursive: true });
+const gif = 'assets/plantup/sprig-happy.gif';
+const gifCrop = 'crop=400:450:200:0';
+run(['-i', gif, '-vf', `fps=10,${gifCrop}`, '-c:v', 'libwebp_anim', '-lossless', '0',
+  '-quality', '40', '-compression_level', '6', '-loop', '0', 'public/img/sprig-happy.webp']);
+run(['-i', gif, '-frames:v', '1', '-vf', gifCrop, '-c:v', 'libwebp', '-quality', '85',
+  'public/img/sprig-happy-still.webp']);
+console.log('fertig: sprig-happy');
