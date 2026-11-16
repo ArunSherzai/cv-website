@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+
+// Platzhalter, bis die Abschnitte in den nächsten Etappen gebaut sind.
+const upcoming = [
+  { id: 'projekte', title: 'Projekte', note: 'Folgt in Etappe 2 und 3.' },
+  { id: 'erfahrung', title: 'Erfahrung', note: 'Folgt in Etappe 3.' },
+  { id: 'ausbildung', title: 'Ausbildung', note: 'Folgt in Etappe 3.' },
+  { id: 'kontakt', title: 'Kontakt', note: 'Folgt in Etappe 3.' },
+];
+---
+
+<Base>
+  <div id="top"></div>
+  <Nav />
+  <main id="inhalt">
+    <Hero />
+    {
+      upcoming.map((s) => (
+        <section class="stub" id={s.id}>
+          <div class="container">
+            <h2>{s.title}</h2>
+            <p class="mono">{s.note}</p>
+          </div>
+        </section>
+      ))
+    }
+  </main>
+</Base>
+
+<style>
+  .stub {
+    padding-block: 4rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .stub h2 {
+    font-size: clamp(2.25rem, 7vw, 4rem);
+  }
+
+  .stub p {
+    margin-top: 0.75rem;
+    color: var(--text-2);
+  }
+</style>

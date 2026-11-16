@@ -1,0 +1,243 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/brand/logo-as.png';
+import { navLinks, site } from '../data/site';
+---
+
+<div class="nav-sentinel" aria-hidden="true"></div>
+<header class="nav" data-nav>
+  <div class="container nav__inner">
+    <a class="nav__logo" href="#top" aria-label={`${site.name}, zum Seitenanfang`}>
+      <Image src={logo} alt="" width={36} height={36} densities={[1, 2, 3]} loading="eager" />
+    </a>
+
+    <nav class="nav__links" aria-label="Abschnitte">
+      <ul>
+        {navLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <button
+      class="nav__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobilmenue"
+      data-nav-toggle
+    >
+      <span class="visually-hidden">Menü</span>
+      <span class="nav__bars" aria-hidden="true"><span></span><span></span></span>
+    </button>
+  </div>
+
+  <nav class="nav__panel" id="mobilmenue" aria-label="Abschnitte (mobil)" hidden data-nav-panel>
+    <ul class="container">
+      {navLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .nav-sentinel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 8px;
+    pointer-events: none;
+  }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  /* Hintergrund liegt in einem Pseudo-Element, damit nur opacity animiert wird. */
+  .nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(245, 245, 247, 0.96);
+    border-bottom: 1px solid var(--line);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-out);
+    pointer-events: none;
+  }
+
+  .nav[data-scrolled]::before,
+  .nav[data-open]::before {
+    opacity: 1;
+  }
+
+  .nav__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-h);
+  }
+
+  .nav__logo {
+    display: block;
+    border-radius: 8px;
+  }
+
+  .nav__logo img {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 8px;
+  }
+
+  .nav__links {
+    display: none;
+  }
+
+  .nav__links ul {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav__links a,
+  .nav__panel a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav__links a {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    transition: opacity 0.2s var(--ease-out);
+  }
+
+  .nav__links a:hover {
+    opacity: 1;
+  }
+
+  .nav__toggle {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-right: -0.625rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .nav__bars {
+    position: relative;
+    display: block;
+    width: 1.125rem;
+    height: 0.5rem;
+  }
+
+  .nav__bars span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .nav__bars span:first-child {
+    top: 0;
+  }
+
+  .nav__bars span:last-child {
+    bottom: 0;
+  }
+
+  .nav__toggle[aria-expanded='true'] .nav__bars span:first-child {
+    transform: translateY(3.25px) rotate(45deg);
+  }
+
+  .nav__toggle[aria-expanded='true'] .nav__bars span:last-child {
+    transform: translateY(-3.25px) rotate(-45deg);
+  }
+
+  .nav__panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav__panel ul {
+    padding-block: 0.25rem 1rem;
+  }
+
+  .nav__panel li + li {
+    border-top: 1px solid var(--line);
+  }
+
+  .nav__panel a {
+    display: block;
+    padding-block: 0.875rem;
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    line-height: 1.1;
+  }
+
+  @media (min-width: 48rem) {
+    .nav__links {
+      display: block;
+    }
+
+    .nav__toggle,
+    .nav__panel {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav::before,
+    .nav__bars span {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const panel = document.querySelector<HTMLElement>('[data-nav-panel]');
+  const sentinel = document.querySelector('.nav-sentinel');
+
+  if (nav && sentinel) {
+    new IntersectionObserver(([entry]) => {
+      nav.toggleAttribute('data-scrolled', !entry.isIntersecting);
+    }).observe(sentinel);
+  }
+
+  if (nav && toggle && panel) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      nav.toggleAttribute('data-open', open);
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    panel.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    window.matchMedia('(min-width: 48rem)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+</script>
