@@ -2,10 +2,11 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
+import PlantUp from '../components/PlantUp.astro';
 
 // Platzhalter, bis die Abschnitte in den nächsten Etappen gebaut sind.
 const upcoming = [
-  { id: 'projekte', title: 'Projekte', note: 'Folgt in Etappe 2 und 3.' },
+  { id: 'ufc', title: 'UFC Fight Predictor', note: 'Folgt in Etappe 3.' },
   { id: 'erfahrung', title: 'Erfahrung', note: 'Folgt in Etappe 3.' },
   { id: 'ausbildung', title: 'Ausbildung', note: 'Folgt in Etappe 3.' },
   { id: 'kontakt', title: 'Kontakt', note: 'Folgt in Etappe 3.' },
@@ -17,6 +18,7 @@ const upcoming = [
   <Nav />
   <main id="inhalt">
     <Hero />
+    <PlantUp />
     {
       upcoming.map((s) => (
         <section class="stub" id={s.id}>
