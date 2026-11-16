@@ -1,0 +1,86 @@
+---
+// Kontakt laut BRIEF.md, Abschnitt 4.7. Keine privaten Daten (4.8).
+// Offene Punkte: Lebenslauf-PDF und LinkedIn fehlen noch und werden erst angezeigt, wenn sie da sind.
+import { site } from '../data/site';
+---
+
+<section class="kontakt" id="kontakt" aria-labelledby="kontakt-title">
+  <div class="container">
+    <h2 class="eyebrow kontakt__eyebrow" id="kontakt-title">Kontakt</h2>
+    <p class="kontakt__mail">
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+
+    <ul class="kontakt__links">
+      <li>
+        <a href={site.github} rel="noopener">GitHub</a>
+      </li>
+      {
+        site.cvPdf && (
+          <li>
+            <a href={site.cvPdf}>Lebenslauf (PDF)</a>
+          </li>
+        )
+      }
+      <li>Wien</li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .kontakt {
+    padding-block: 5rem 4rem;
+    background: var(--dark);
+    color: var(--on-dark);
+  }
+
+  .kontakt__eyebrow {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--on-dark-2);
+  }
+
+  .kontakt__mail {
+    margin-top: 1rem;
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 8.4vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .kontakt__mail a {
+    text-decoration: none;
+  }
+
+  .kontakt__mail a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.12em;
+  }
+
+  .kontakt__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(245, 245, 247, 0.16);
+    color: var(--on-dark-2);
+  }
+
+  .kontakt__links a {
+    color: var(--on-dark);
+    text-underline-offset: 0.2em;
+  }
+
+  @media (min-width: 48rem) {
+    .kontakt {
+      padding-block: 8rem 5rem;
+    }
+
+    .kontakt__links {
+      margin-top: 4rem;
+    }
+  }
+</style>

@@ -1,0 +1,228 @@
+---
+// Alle Texte laut BRIEF.md, Abschnitt 4.3. „Mein Anteil“ wörtlich, nichts ergänzen.
+// Offener Punkt: Screenshot vom Kämpfervergleich fehlt, bis dahin die typografische Ergebnis-Karte.
+const stack = ['Python', 'pandas', 'scikit-learn', 'Streamlit', 'BeautifulSoup', 'Matplotlib'];
+---
+
+<section class="section ufc" id="ufc" aria-labelledby="ufc-title">
+  <div class="container">
+    <p class="eyebrow">Gemeinsam mit David Vukasovic · 2026</p>
+    <h2 class="ufc__title" id="ufc-title">UFC Fight Predictor</h2>
+    <p class="ufc__lead">
+      Web-App, die den Ausgang von UFC-Kämpfen vorhersagt: Sieger, Runde und Art des Siegs.
+    </p>
+
+    <div class="ufc__grid">
+      <div class="ufc__text">
+        <p>
+          Grundlage sind 8.427 historische Kämpfe mit 134 Merkmalen. Für zwei frei wählbare Kämpfer
+          berechnet die App eine Vorhersage, erklärt, welche Faktoren den Ausschlag geben, und
+          vergleicht das mit den Wettquoten. Eine Datenpipeline holt neue UFC-Events von
+          ufcstats.com und trainiert die Modelle neu.
+        </p>
+
+        <h3 class="ufc__h3">Mein Anteil</h3>
+        <p>
+          Entwickelt großteils im Pair Programming mit David an einem Rechner. Mein Schwerpunkt: die
+          Oberfläche des Kämpfervergleichs („Tale of the Tape“) und die Datenvisualisierung. Davids
+          Schwerpunkt: Datenbereinigung, Modelle und Datenpipeline.
+        </p>
+
+        <dl class="ufc__facts">
+          <div>
+            <dt class="eyebrow">Tech-Stack</dt>
+            <dd>{stack.join(' · ')}</dd>
+          </div>
+          <div>
+            <dt class="eyebrow">Code</dt>
+            <dd>
+              <a class="link" href="https://github.com/ArunSherzai/UFCPrediction" rel="noopener">
+                github.com/ArunSherzai/UFCPrediction
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="ufc__card">
+        <p class="ufc__card-label">Ergebnisse</p>
+        <p class="ufc__big">60,5&nbsp;%</p>
+        <p class="ufc__card-main">Sieger: 60,5&nbsp;% Accuracy (Logistic Regression).</p>
+        <p class="ufc__card-note">
+          Zum Vergleich: Wer immer auf die häufigere Ecke tippt, liegt bei 56,1&nbsp;%.
+        </p>
+        <dl class="ufc__small">
+          <div>
+            <dt>Runde</dt>
+            <dd>45&nbsp;%</dd>
+          </div>
+          <div>
+            <dt>Siegmethode</dt>
+            <dd>44&nbsp;%</dd>
+          </div>
+        </dl>
+        <ul class="ufc__notes">
+          <li>
+            Daten zeitlich getrennt: Getestet wird nur auf Kämpfen nach dem Trainingszeitraum.
+          </li>
+          <li>
+            Wichtigster Einzelfaktor: der Altersunterschied. Der jüngere Kämpfer gewinnt deutlich
+            häufiger.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ufc__title {
+    margin-top: 1rem;
+    font-size: clamp(2.75rem, 11vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  .ufc__lead {
+    max-width: 28em;
+    margin-top: 1.25rem;
+    font-size: 1.125rem;
+    line-height: 1.45;
+    text-wrap: pretty;
+  }
+
+  .ufc__grid {
+    display: grid;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .ufc__text p {
+    max-width: 38em;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  .ufc__h3 {
+    margin: 2rem 0 0.625rem;
+    font-size: 2rem;
+  }
+
+  .ufc__facts {
+    margin: 2rem 0 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ufc__facts > div {
+    padding-block: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .ufc__facts dd {
+    margin: 0.375rem 0 0;
+  }
+
+  /* Typografische Ergebnis-Karte (ersetzt den fehlenden Screenshot) */
+  .ufc__card {
+    padding: 2rem 1.5rem;
+    background: var(--dark);
+    color: var(--on-dark);
+    border-radius: 1.5rem;
+  }
+
+  .ufc__card-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--on-dark-2);
+  }
+
+  .ufc__big {
+    margin-top: 0.75rem;
+    font-family: var(--font-serif);
+    font-size: clamp(5rem, 24vw, 7.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
+  .ufc__card-main {
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+
+  .ufc__card-note {
+    margin-top: 0.375rem;
+    color: var(--on-dark-2);
+    line-height: 1.45;
+  }
+
+  .ufc__small {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 1.75rem 0 0;
+    padding-block: 1.25rem;
+    border-block: 1px solid rgba(245, 245, 247, 0.16);
+  }
+
+  .ufc__small div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.25rem;
+  }
+
+  .ufc__small dt {
+    font-size: 0.8125rem;
+    color: var(--on-dark-2);
+  }
+
+  .ufc__small dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .ufc__notes {
+    margin-top: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--on-dark-2);
+  }
+
+  .ufc__notes li + li {
+    margin-top: 0.625rem;
+  }
+
+  @media (min-width: 48rem) {
+    .ufc__lead {
+      font-size: 1.375rem;
+    }
+
+    .ufc__card {
+      padding: 3rem;
+      border-radius: 2rem;
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .ufc__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+      gap: 4.5rem;
+      align-items: start;
+      margin-top: 4rem;
+    }
+
+    .ufc__facts > div {
+      display: grid;
+      grid-template-columns: 8rem minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: baseline;
+    }
+
+    .ufc__facts dd {
+      margin-top: 0;
+    }
+  }
+</style>

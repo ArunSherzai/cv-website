@@ -1,0 +1,138 @@
+---
+// Erfahrung, Ausbildung und Skills laut BRIEF.md, Abschnitte 4.4 bis 4.6.
+const erfahrung = [
+  {
+    zeit: '07/2025',
+    titel: 'Praktikum IT-Compliance',
+    ort: 'Octapharma (Wien)',
+    punkte: [
+      'Katalog aller GMP-relevanten Ordner für eine Übersiedelung erstellt, ungültige SOPs erfasst',
+      'SOP-Referenzen der IT-/ITC-SOPs aufbereitet',
+      'Virtuelle Maschinen gegen das Installationsprotokoll abgeglichen',
+      'Anforderungen, Risikoanalyse und Testpunkte für eine Handy-App erarbeitet',
+    ],
+    zusatz:
+      'Durch das Praktikum in einem regulierten Pharma-Umfeld kenne ich den Weg von Anforderungen über Risikoanalyse bis zu Testfällen.',
+  },
+  {
+    zeit: 'seit 10/2024',
+    titel: 'Verkaufsberater Computerabteilung',
+    ort: 'MediaMarkt (geringfügig, samstags)',
+    text: 'Kundenberatung und Verkauf in der Computerabteilung',
+  },
+  {
+    zeit: '07/2023',
+    titel: 'Praktikum Digitalisierung',
+    ort: 'REISSWOLF',
+    text: 'Digitalisierung von Dokumenten, administrative Tätigkeiten',
+  },
+];
+
+const skills = [
+  {
+    gruppe: 'Im Einsatz in Projekten',
+    liste: 'TypeScript, React Native, Expo, Supabase, Python, Git',
+  },
+  { gruppe: 'Gut', liste: 'C#, ASP.NET, Java, SQL, HTML/CSS, JavaScript' },
+  { gruppe: 'Grundlagen', liste: 'pandas, scikit-learn, SAP' },
+  {
+    gruppe: 'Sprachen',
+    liste: 'Deutsch (sehr gut), Englisch (sehr gut), Dari/Persisch (Muttersprache)',
+  },
+];
+---
+
+<section class="section section--line" id="erfahrung" aria-labelledby="erfahrung-title">
+  <div class="container">
+    <h2 class="section__title" id="erfahrung-title">Erfahrung</h2>
+    <ol class="rows">
+      {
+        erfahrung.map((e) => (
+          <li>
+            <p class="rows__meta">{e.zeit}</p>
+            <div>
+              <h3 class="rows__title">
+                {e.titel} <span class="rows__sub">· {e.ort}</span>
+              </h3>
+              {e.punkte && (
+                <ul class="rows__body">
+                  {e.punkte.map((p) => (
+                    <li>{p}</li>
+                  ))}
+                </ul>
+              )}
+              {e.text && <p class="rows__body">{e.text}</p>}
+              {e.zusatz && <p class="rows__body rows__sub">{e.zusatz}</p>}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="section section--line" id="ausbildung" aria-labelledby="ausbildung-title">
+  <div class="container">
+    <h2 class="section__title" id="ausbildung-title">Ausbildung</h2>
+    <ol class="rows">
+      <li>
+        <p class="rows__meta">seit 09/2026</p>
+        <div>
+          <h3 class="rows__title">
+            FH Technikum Wien <span class="rows__sub">· Informatik (Bachelor)</span>
+          </h3>
+          <p class="rows__body">Direkteinstieg ins 3. Semester nach der HTL</p>
+        </div>
+      </li>
+      <li>
+        <p class="rows__meta">09/2021 – 06/2026</p>
+        <div>
+          <h3 class="rows__title">
+            HTL Donaustadt <span class="rows__sub">· Abteilung Informatik</span>
+          </h3>
+          <p class="rows__body">
+            Matura <strong class="mark">mit ausgezeichnetem Erfolg</strong>. Alle fünf
+            Jahreszeugnisse <strong class="mark">mit ausgezeichnetem Erfolg</strong>. Diplomarbeit:
+            PlantUp
+          </p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section--line" id="skills" aria-labelledby="skills-title">
+  <div class="container">
+    <h2 class="section__title" id="skills-title">Skills</h2>
+    <dl class="rows">
+      {
+        skills.map((s) => (
+          <div>
+            <dt class="rows__meta">{s.gruppe}</dt>
+            <dd class="skills__list">{s.liste}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .mark {
+    font-weight: 600;
+    color: var(--accent-text);
+  }
+
+  .skills__list {
+    margin: 0.375rem 0 0;
+    font-size: 1.125rem;
+    line-height: 1.45;
+  }
+
+  @media (min-width: 48rem) {
+    .skills__list {
+      margin-top: 0;
+      font-size: 1.25rem;
+    }
+  }
+</style>
