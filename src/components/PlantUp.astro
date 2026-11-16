@@ -1,17 +1,11 @@
 ---
 import Phone from './Phone.astro';
-import questsScreen from '../../assets/plantup/plantup-quests-streak.png';
 import healthScreen from '../../assets/plantup/plantup-health.png';
 import feedScreen from '../../assets/plantup/plantup-feed.png';
 import statsScreen from '../../assets/plantup/plantup-stats.png';
 
 // Alle Texte laut BRIEF.md, Abschnitt 4.2. „Mein Anteil“ wörtlich, nichts ergänzen.
 const screens = [
-  {
-    src: healthScreen,
-    caption: 'Pflanzen-Gesundheit',
-    alt: 'PlantUp-App: Pflanzen-Gesundheit mit Maskottchen Sprig, Sensorwerten und Mentor-Hinweis',
-  },
   {
     src: feedScreen,
     caption: 'Community-Feed',
@@ -42,15 +36,16 @@ const anteil = [
   { label: 'Backend', text: 'C#-MQTT-Middleware und eine Video-Upload-API in ASP.NET' },
 ];
 
+// Zugeschnittene, komprimierte Fassungen aus scripts/videos.mjs
 const sprig = [
-  { file: 'sprig-health-100', caption: 'Gesundheit 100 %' },
-  { file: 'sprig-health-50', caption: 'Gesundheit 50 %' },
-  { file: 'sprig-health-10', caption: 'Gesundheit 10 %' },
+  { file: 'sprig-health-100', state: '100 %' },
+  { file: 'sprig-health-50', state: '50 %' },
+  { file: 'sprig-health-10', state: '10 %' },
 ];
 
 const zahlen = [
   { value: '83 von 338', label: 'App-Commits (Platz 2 im Team)' },
-  { value: 'Mai 2025 bis April 2026', label: 'Zeitraum' },
+  { value: '05/2025 – 04/2026', label: 'Zeitraum' },
   { value: 'ca. 42.000', label: 'Zeilen TypeScript im App-Code (gesamtes Team)' },
 ];
 
@@ -85,8 +80,8 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
       </p>
       <Phone
         class="pu-intro__phone"
-        src={questsScreen}
-        alt="PlantUp-App: Missionen-Screen mit Level, 4-Tage-Streak und Daily Quests"
+        src={healthScreen}
+        alt="PlantUp-App: Pflanzen-Gesundheit mit Maskottchen Sprig, Sensorwerten und Mentor-Hinweis"
         sizes="(min-width: 48rem) 320px, 68vw"
       />
     </div>
@@ -131,7 +126,7 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
               ))
             }
           </ul>
-          <p class="pu-anteil__note">Nicht von mir: die Hardware (ESP32, Sensoren, Gehäuse).</p>
+          <p class="pu-anteil__note">Hardware (ESP32, Sensoren, Gehäuse) von meinen Teamkollegen.</p>
         </div>
       </div>
     </div>
@@ -141,26 +136,27 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
   <div class="pu-block">
     <div class="container">
       <h3 class="pu-h3">Sprig</h3>
-      <p class="pu-sub">Das Maskottchen reagiert auf den Zustand der Pflanze.</p>
+      <p class="pu-sub">
+        Das Maskottchen reagiert auf den Zustand der Pflanze. Die Animationen sind von mir.
+      </p>
       <ul class="pu-sprig">
         {
           sprig.map((v) => (
             <li>
-              <figure>
-                <video
-                  muted
-                  loop
-                  playsinline
-                  preload="metadata"
-                  width="594"
-                  height="262"
-                  aria-label={`Animierte Gesundheitskarte mit Sprig, ${v.caption}`}
-                  data-sprig
-                >
-                  <source src={`/video/${v.file}.mp4`} type="video/mp4" />
-                </video>
-                <figcaption class="mono">{v.caption}</figcaption>
-              </figure>
+              <video
+                muted
+                loop
+                playsinline
+                preload="none"
+                width="572"
+                height="244"
+                poster={`/video/${v.file}.webp`}
+                aria-label={`Animierte Gesundheitskarte mit Sprig bei ${v.state} Pflanzengesundheit`}
+                data-sprig
+              >
+                <source src={`/video/${v.file}.mp4`} type="video/mp4" />
+                <source src={`/video/${v.file}.webm`} type="video/webm" />
+              </video>
             </li>
           ))
         }
@@ -290,8 +286,7 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
     scroll-snap-align: start;
   }
 
-  .pu-screens figcaption,
-  .pu-sprig figcaption {
+  .pu-screens figcaption {
     margin-top: 0.875rem;
     color: var(--text-2);
   }
@@ -345,13 +340,13 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
     margin-top: 2rem;
   }
 
-  /* Die drei Videos sind minimal unterschiedlich groß, daher ein gemeinsames Format. */
+  /* Die Videos sind auf die Karte zugeschnitten; der Radius blendet die Ecken der Aufnahme aus. */
   .pu-sprig video {
+    display: block;
     width: 100%;
-    aspect-ratio: 594 / 262;
+    aspect-ratio: 572 / 244;
     object-fit: cover;
-    border-radius: 1rem;
-    background: var(--surface);
+    border-radius: 5.6% / 13.2%;
   }
 
   /* Zahlen */
@@ -458,8 +453,8 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
     }
 
     .pu-zahlen {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 3rem;
       padding-block: 2.25rem;
     }
 
