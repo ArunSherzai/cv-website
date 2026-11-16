@@ -7,6 +7,11 @@ import statsScreen from '../../assets/plantup/plantup-stats.png';
 // Alle Texte laut BRIEF.md, Abschnitt 4.2. „Mein Anteil“ wörtlich, nichts ergänzen.
 const screens = [
   {
+    src: healthScreen,
+    caption: 'Pflanzen-Gesundheit',
+    alt: 'PlantUp-App: Pflanzen-Gesundheit mit Maskottchen Sprig, Sensorwerten und Mentor-Hinweis',
+  },
+  {
     src: feedScreen,
     caption: 'Community-Feed',
     alt: 'PlantUp-App: Community-Feed mit Beiträgen anderer Nutzer',
@@ -66,80 +71,67 @@ const stack = [
 const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard Onu'];
 ---
 
-<section class="pu" id="projekte" aria-labelledby="plantup-title">
-  <!-- Auftakt -->
-  <div class="pu-intro">
-    <div class="container">
-      <p class="eyebrow pu-intro__eyebrow">
-        Diplomarbeit · HTL Donaustadt · 2025/26 · Team aus 4 Personen
-      </p>
-      <h2 class="pu-intro__title" id="plantup-title">PlantUp</h2>
-      <p class="pu-intro__lead">
-        Smart-Gardening-App, die Pflanzenpflege mit IoT-Sensoren, Gamification und einer Community
-        verbindet.
-      </p>
-      <Phone
-        class="pu-intro__phone"
-        src={healthScreen}
-        alt="PlantUp-App: Pflanzen-Gesundheit mit Maskottchen Sprig, Sensorwerten und Mentor-Hinweis"
-        sizes="(min-width: 48rem) 320px, 68vw"
-      />
-    </div>
-  </div>
-
-  <!-- Kurzbeschreibung und weitere Screens -->
-  <div class="pu-block">
-    <div class="container">
-      <p class="pu-about">
+<section class="section section--line pu" id="projekte" aria-labelledby="plantup-title">
+  <div class="container">
+    <!-- Kopf: kompakt, ohne großes Bild -->
+    <header class="pu-head">
+      <div>
+        <p class="eyebrow">Diplomarbeit · HTL Donaustadt · 2025/26 · Team aus 4 Personen</p>
+        <h2 class="pu-head__title" id="plantup-title">PlantUp</h2>
+        <p class="pu-head__lead">
+          Smart-Gardening-App, die Pflanzenpflege mit IoT-Sensoren, Gamification und einer
+          Community verbindet.
+        </p>
+      </div>
+      <p class="pu-head__about">
         Sensoren im Blumentopf messen Bodenfeuchte, Temperatur und Licht. Die App zeigt den Zustand
         der Pflanze, gibt Pflegetipps und belohnt regelmäßige Pflege mit XP, Missionen und Streaks.
         Dazu kommen ein Feed, Direktnachrichten und ein Mentor-System, in dem erfahrene Nutzer
         Einsteigern helfen.
       </p>
-    </div>
-
-    <div class="pu-screens" role="group" aria-label="Weitere Screens der App" tabindex="0">
-      {
-        screens.map((s) => (
-          <figure class="pu-screens__item">
-            <Phone src={s.src} alt={s.alt} sizes="(min-width: 48rem) 280px, 62vw" />
-            <figcaption class="mono">{s.caption}</figcaption>
-          </figure>
-        ))
-      }
-    </div>
+    </header>
   </div>
 
-  <!-- Mein Anteil -->
-  <div class="pu-block pu-block--tight">
-    <div class="container">
-      <div class="pu-anteil">
-        <h3 class="pu-anteil__title">Mein Anteil</h3>
-        <div>
-          <ul class="pu-anteil__list">
-            {
-              anteil.map((a) => (
-                <li>
-                  {a.label && <strong>{a.label}: </strong>}
-                  {a.text}
-                </li>
-              ))
-            }
-          </ul>
-          <p class="pu-anteil__note">Hardware (ESP32, Sensoren, Gehäuse) von meinen Teamkollegen.</p>
-        </div>
+  <!-- Eine Reihe mit drei Screens -->
+  <div class="pu-screens" role="group" aria-label="Screens der App" tabindex="0">
+    {
+      screens.map((s) => (
+        <figure class="pu-screens__item">
+          <Phone src={s.src} alt={s.alt} sizes="(min-width: 48rem) 240px, 56vw" />
+          <figcaption class="mono">{s.caption}</figcaption>
+        </figure>
+      ))
+    }
+  </div>
+
+  <div class="container">
+    <!-- Mein Anteil -->
+    <div class="pu-anteil">
+      <h3 class="pu-h3">Mein Anteil</h3>
+      <div>
+        <ul class="pu-anteil__list">
+          {
+            anteil.map((a) => (
+              <li>
+                {a.label && <strong>{a.label}: </strong>}
+                {a.text}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="pu-anteil__note">Hardware (ESP32, Sensoren, Gehäuse) von meinen Teamkollegen.</p>
       </div>
     </div>
-  </div>
 
-  <!-- Sprig -->
-  <div class="pu-block">
-    <div class="container">
-      <h3 class="pu-h3">Sprig</h3>
-      <p class="pu-sub">
-        Das Maskottchen reagiert auf den Zustand der Pflanze. Die Animationen sind von mir.
-      </p>
-      <ul class="pu-sprig">
+    <!-- Sprig -->
+    <div class="pu-sprig">
+      <div class="pu-sprig__head">
+        <div class="pu-sprig__text">
+          <h3 class="pu-h3">Sprig</h3>
+          <p class="pu-sub">Das Maskottchen reagiert auf den Zustand der Pflanze.</p>
+        </div>
+      </div>
+      <ul class="pu-sprig__cards">
         {
           sprig.map((v) => (
             <li>
@@ -162,113 +154,78 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
         }
       </ul>
     </div>
-  </div>
 
-  <!-- Zahlen, Stack, Pitch, Team -->
-  <div class="pu-block pu-block--tight">
-    <div class="container">
-      <dl class="pu-zahlen">
-        {
-          zahlen.map((z) => (
-            <div>
-              <dt>{z.label}</dt>
-              <dd>{z.value}</dd>
-            </div>
-          ))
-        }
-      </dl>
+    <!-- Details -->
+    <dl class="pu-zahlen">
+      {
+        zahlen.map((z) => (
+          <div>
+            <dt>{z.label}</dt>
+            <dd>{z.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
 
-      <dl class="pu-facts">
-        <div>
-          <dt class="eyebrow">Tech-Stack</dt>
-          <dd>{stack.join(' · ')}</dd>
-        </div>
-        <div>
-          <dt class="eyebrow">Pitch</dt>
-          <dd>
-            PlantUp wurde im Mai 2025 bei der „4B Pitch Arena“ vor einer Jury aus Wirtschaft und IT
-            präsentiert (4-Minuten-Pitch, 10 Minuten Q&amp;A). Danach haben zwei Jurymitglieder die
-            Hardware des Projekts finanziert.
-          </dd>
-        </div>
-        <div>
-          <dt class="eyebrow">Team</dt>
-          <dd>{team.join(', ')}</dd>
-        </div>
-        <div>
-          <dt class="eyebrow">Code</dt>
-          <dd>
-            <a class="link" href="https://github.com/ArunSherzai/PlantUp" rel="noopener">
-              github.com/ArunSherzai/PlantUp
-            </a>
-          </dd>
-        </div>
-      </dl>
-    </div>
+    <dl class="pu-facts">
+      <div>
+        <dt class="eyebrow">Tech-Stack</dt>
+        <dd>{stack.join(' · ')}</dd>
+      </div>
+      <div>
+        <dt class="eyebrow">Pitch</dt>
+        <dd>
+          PlantUp wurde im Mai 2025 bei der „4B Pitch Arena“ vor einer Jury aus Wirtschaft und IT
+          präsentiert (4-Minuten-Pitch, 10 Minuten Q&amp;A). Danach haben zwei Jurymitglieder die
+          Hardware des Projekts finanziert.
+        </dd>
+      </div>
+      <div>
+        <dt class="eyebrow">Team</dt>
+        <dd>{team.join(', ')}</dd>
+      </div>
+      <div>
+        <dt class="eyebrow">Code</dt>
+        <dd>
+          <a class="link" href="https://github.com/ArunSherzai/PlantUp" rel="noopener">
+            github.com/ArunSherzai/PlantUp
+          </a>
+        </dd>
+      </div>
+    </dl>
   </div>
 </section>
 
 <style>
-  /* Auftakt, dunkel */
-  .pu-intro {
-    padding-block: 4.5rem 4rem;
-    background: var(--dark);
-    color: var(--on-dark);
-    text-align: center;
-  }
-
-  .pu-intro__eyebrow {
-    color: var(--on-dark-2);
-  }
-
-  .pu-intro__title {
-    margin-top: 1rem;
-    font-size: clamp(4.5rem, 22vw, 12rem);
-    line-height: 0.9;
+  /* Kopf */
+  .pu-head__title {
+    margin-top: 0.75rem;
+    font-size: clamp(4rem, 18vw, 7.5rem);
+    line-height: 0.92;
     letter-spacing: -0.03em;
   }
 
-  .pu-intro__lead {
-    max-width: 30em;
-    margin: 1.25rem auto 0;
+  .pu-head__lead {
+    max-width: 24em;
+    margin-top: 1rem;
     font-size: 1.125rem;
     line-height: 1.45;
-    color: var(--on-dark);
-    text-wrap: balance;
-  }
-
-  .pu-intro :global(.pu-intro__phone) {
-    width: min(68vw, 20rem);
-    margin: 3rem auto 0;
-  }
-
-  /* Helle Blöcke */
-  .pu-block {
-    padding-block: 4rem;
-  }
-
-  .pu-block--tight {
-    padding-block: 0 4rem;
-  }
-
-  .pu-block + .pu-block:not(.pu-block--tight) {
-    padding-top: 1rem;
-  }
-
-  .pu-about {
-    max-width: 26em;
-    font-family: var(--font-serif);
-    font-size: clamp(1.625rem, 5.2vw, 2.5rem);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
     text-wrap: pretty;
   }
 
-  /* Weitere Screens: am Handy waagrecht wischbar, ab Tablet nebeneinander */
+  .pu-head__about {
+    max-width: 36em;
+    margin-top: 1.25rem;
+    line-height: 1.55;
+    color: var(--text-2);
+    text-wrap: pretty;
+  }
+
+  /* Screens: am Handy waagrecht wischbar, ab Tablet nebeneinander */
   .pu-screens {
     display: flex;
     gap: 1.25rem;
-    margin-top: 2.5rem;
+    margin-top: 2.25rem;
     padding-inline: var(--gutter);
     padding-bottom: 1.5rem;
     overflow-x: auto;
@@ -282,33 +239,34 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
   }
 
   .pu-screens__item {
-    flex: 0 0 62vw;
+    flex: 0 0 56vw;
     scroll-snap-align: start;
   }
 
   .pu-screens figcaption {
-    margin-top: 0.875rem;
+    margin-top: 0.75rem;
     color: var(--text-2);
+  }
+
+  .pu-h3 {
+    font-size: clamp(2.25rem, 8vw, 3rem);
   }
 
   /* Mein Anteil */
   .pu-anteil {
-    padding: 2rem 1.5rem;
+    margin-top: 1.5rem;
+    padding: 1.75rem 1.5rem;
     background: var(--surface);
     border-radius: 1.5rem;
   }
 
-  .pu-anteil__title {
-    font-size: clamp(2.5rem, 9vw, 4rem);
-  }
-
   .pu-anteil__list {
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
     border-top: 1px solid var(--line);
   }
 
   .pu-anteil__list li {
-    padding-block: 0.875rem;
+    padding-block: 0.75rem;
     border-bottom: 1px solid var(--line);
     line-height: 1.45;
     text-wrap: pretty;
@@ -319,29 +277,30 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
   }
 
   .pu-anteil__note {
-    margin-top: 1rem;
+    margin-top: 0.875rem;
     font-size: 0.875rem;
     color: var(--text-2);
   }
 
   /* Sprig */
-  .pu-h3 {
-    font-size: clamp(2.5rem, 9vw, 4rem);
+  .pu-sprig {
+    margin-top: 3.5rem;
   }
 
   .pu-sub {
-    margin-top: 0.75rem;
-    color: var(--text-2);
+    margin-top: 0.625rem;
+    font-size: 1.125rem;
+    line-height: 1.45;
   }
 
-  .pu-sprig {
+  .pu-sprig__cards {
     display: grid;
-    gap: 1.75rem;
-    margin-top: 2rem;
+    gap: 1rem;
+    margin-top: 1.75rem;
   }
 
   /* Die Videos sind auf die Karte zugeschnitten; der Radius blendet die Ecken der Aufnahme aus. */
-  .pu-sprig video {
+  .pu-sprig__cards video {
     display: block;
     width: 100%;
     aspect-ratio: 572 / 244;
@@ -349,11 +308,11 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
     border-radius: 5.6% / 13.2%;
   }
 
-  /* Zahlen */
+  /* Kennzahlen */
   .pu-zahlen {
     display: grid;
-    gap: 1.25rem;
-    margin: 0;
+    gap: 1.125rem;
+    margin: 3.5rem 0 0;
     padding-block: 1.5rem;
     border-block: 1px solid var(--line);
   }
@@ -377,13 +336,13 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
     letter-spacing: -0.02em;
   }
 
-  /* Stack, Pitch, Team */
+  /* Stack, Pitch, Team, Code */
   .pu-facts {
     margin: 0;
   }
 
   .pu-facts > div {
-    padding-block: 1.25rem;
+    padding-block: 1rem;
     border-bottom: 1px solid var(--line);
   }
 
@@ -395,67 +354,62 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
   }
 
   @media (min-width: 48rem) {
-    .pu-intro {
-      padding-block: 7rem 6rem;
+    .pu-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 4rem;
+      align-items: end;
     }
 
-    .pu-intro__lead {
-      margin-top: 1.75rem;
-      font-size: 1.375rem;
+    .pu-head__lead {
+      font-size: 1.25rem;
     }
 
-    .pu-intro :global(.pu-intro__phone) {
-      margin-top: 4.5rem;
-    }
-
-    .pu-block {
-      padding-block: 7rem;
-    }
-
-    .pu-block--tight {
-      padding-block: 0 7rem;
+    .pu-head__about {
+      margin-top: 0;
     }
 
     .pu-screens {
       justify-content: center;
-      gap: clamp(1.5rem, 4vw, 3.5rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
       max-width: var(--page-max);
-      margin: 4.5rem auto 0;
+      margin: 3.5rem auto 0;
       padding-bottom: 0;
       overflow: visible;
     }
 
     .pu-screens__item {
-      flex: 0 1 17.5rem;
+      flex: 0 1 15rem;
     }
 
     .pu-anteil {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
-      gap: 3rem;
-      padding: 4rem;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      gap: 2.5rem;
+      margin-top: 4.5rem;
+      padding: 2.75rem 3rem;
       border-radius: 2rem;
     }
 
     .pu-anteil__list {
-      margin-top: 0.5rem;
-    }
-
-    .pu-anteil__list li {
-      padding-block: 1.125rem;
-      font-size: 1.125rem;
+      margin-top: 0.25rem;
     }
 
     .pu-sprig {
-      grid-template-columns: repeat(3, 1fr);
+      margin-top: 5rem;
+    }
+
+    .pu-sprig__cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.5rem;
-      margin-top: 3rem;
+      margin-top: 2.5rem;
     }
 
     .pu-zahlen {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 3rem;
-      padding-block: 2.25rem;
+      margin-top: 5rem;
+      padding-block: 1.75rem;
     }
 
     .pu-zahlen dd {
@@ -467,7 +421,7 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
       grid-template-columns: 10rem minmax(0, 1fr);
       gap: 2rem;
       align-items: baseline;
-      padding-block: 1.5rem;
+      padding-block: 1.125rem;
     }
 
     .pu-facts dd {
