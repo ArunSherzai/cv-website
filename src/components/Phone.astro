@@ -1,0 +1,26 @@
+---
+// Schlichter, selbst gebauter Handy-Rahmen für die randlosen App-Screenshots (1280×2856).
+import { Picture } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  sizes: string;
+  loading?: 'lazy' | 'eager';
+  class?: string;
+}
+
+const { src, alt, sizes, loading = 'lazy', class: className } = Astro.props;
+---
+
+<div class:list={['phone', className]}>
+  <Picture
+    src={src}
+    alt={alt}
+    formats={['avif', 'webp']}
+    widths={[240, 360, 480, 720]}
+    sizes={sizes}
+    loading={loading}
+    decoding="async"
+  />
+</div>

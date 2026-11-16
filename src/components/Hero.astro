@@ -1,37 +1,56 @@
 ---
+import Phone from './Phone.astro';
+import questsScreen from '../../assets/plantup/plantup-quests-streak.png';
 import { site } from '../data/site';
 
-// Wortlaut aus BRIEF.md, Abschnitt 4.1
+// Wortlaut laut BRIEF.md, Abschnitt 4.1 (Stand: Aruns Feedback zum Hero)
 const facts = [
-  'Matura mit ausgezeichnetem Erfolg, HTL Donaustadt Informatik',
-  'Diplomarbeit PlantUp: 83 Commits, ein Jahr Entwicklung im 4er-Team',
-  'IT-Compliance-Praktikum bei Octapharma',
+  { key: 'Ausgezeichnet', text: 'Matura, HTL Donaustadt Informatik' },
+  { key: 'PlantUp', text: 'Diplomarbeit, ein Jahr im 4er-Team' },
+  { key: 'Octapharma', text: 'Praktikum IT-Compliance' },
 ];
 ---
 
 <section class="hero" aria-labelledby="hero-name">
-  <div class="container">
-    <h1 class="hero__name" id="hero-name">{site.name}</h1>
-    <p class="hero__lead">
-      Informatik-Student an der FH Technikum Wien. Ich baue Apps mit sauberen Oberflächen,
-      durchdachten Animationen und einem Backend, das mitspielt.
-    </p>
+  <div class="container hero__grid">
+    <div class="hero__text">
+      <h1 class="hero__name" id="hero-name">{site.name}</h1>
+      <p class="hero__lead">
+        Informatik-Student an der FH Technikum Wien. Ich baue Apps mit sauberen Oberflächen,
+        durchdachten Animationen und einem Backend, das mitspielt.
+      </p>
 
-    <ul class="hero__facts mono">
-      {facts.map((f) => <li>{f}</li>)}
-    </ul>
+      <ul class="hero__facts">
+        {
+          facts.map((f) => (
+            <li>
+              <span class="hero__fact-key">{f.key}</span>
+              <span class="hero__fact-text">{f.text}</span>
+            </li>
+          ))
+        }
+      </ul>
 
-    <div class="hero__actions">
-      <a class="btn btn--primary" href="#projekte">Projekte ansehen</a>
-      {
-        site.cvPdf && (
-          <a class="btn btn--secondary" href={site.cvPdf}>
-            Lebenslauf (PDF)
-          </a>
-        )
-      }
-      <a class="btn btn--secondary" href={site.github} rel="noopener">GitHub</a>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#projekte">Projekte ansehen</a>
+        {
+          site.cvPdf && (
+            <a class="btn btn--secondary" href={site.cvPdf}>
+              Lebenslauf (PDF)
+            </a>
+          )
+        }
+        <a class="btn btn--secondary" href={site.github} rel="noopener">GitHub</a>
+      </div>
     </div>
+
+    <!-- Nur ab Desktop-Breite sichtbar; am Handy zeigt die PlantUp-Sektion denselben Screen. -->
+    <Phone
+      class="hero__phone"
+      src={questsScreen}
+      alt="PlantUp-App: Missionen-Screen mit Level, 4-Tage-Streak und Daily Quests"
+      sizes="(min-width: 60rem) 300px, 1px"
+    />
   </div>
 </section>
 
@@ -41,7 +60,7 @@ const facts = [
   }
 
   .hero__name {
-    font-size: clamp(3.5rem, 17vw, 9.5rem);
+    font-size: clamp(3.5rem, 17vw, 7rem);
     line-height: 0.95;
     letter-spacing: -0.025em;
   }
@@ -51,20 +70,34 @@ const facts = [
     margin-top: 1rem;
     font-size: 1.0625rem;
     line-height: 1.45;
-    color: var(--text);
     text-wrap: pretty;
   }
 
   .hero__facts {
     margin-top: 1.5rem;
     border-top: 1px solid var(--line);
-    color: var(--text-2);
-    line-height: 1.4;
   }
 
   .hero__facts li {
-    padding-block: 0.625rem;
+    display: grid;
+    grid-template-columns: 8.75rem 1fr;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding-block: 0.5rem;
     border-bottom: 1px solid var(--line);
+  }
+
+  .hero__fact-key {
+    font-family: var(--font-serif);
+    font-size: 1.625rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .hero__fact-text {
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    color: var(--text-2);
   }
 
   .hero__actions {
@@ -82,39 +115,94 @@ const facts = [
     flex: 1 1 0;
   }
 
+  .hero :global(.hero__phone) {
+    display: none;
+  }
+
   @media (min-width: 48rem) {
     .hero {
-      padding-block: 5rem 6rem;
+      padding-block: 4rem 5rem;
+    }
+
+    .hero__name {
+      font-size: clamp(5rem, 11.5vw, 9rem);
     }
 
     .hero__lead {
       margin-top: 1.75rem;
-      font-size: 1.375rem;
+      font-size: 1.3125rem;
       line-height: 1.4;
     }
 
     .hero__facts {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 3.5rem;
+      gap: 1.75rem;
+      margin-top: 3rem;
       border-top: 0;
     }
 
     .hero__facts li {
-      padding-block: 0.875rem 0;
+      display: block;
+      padding-block: 1rem 0;
       border-bottom: 0;
       border-top: 1px solid var(--line);
+    }
+
+    .hero__fact-key {
+      display: block;
+      font-size: 2rem;
+    }
+
+    .hero__fact-text {
+      display: block;
+      margin-top: 0.375rem;
+      font-size: 0.875rem;
       text-wrap: balance;
     }
 
     .hero__actions {
-      margin-top: 3rem;
+      margin-top: 2.75rem;
     }
 
     .hero__actions .btn--primary,
     .hero__actions .btn--secondary {
       flex: 0 0 auto;
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .hero {
+      padding-block: 3rem 5rem;
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: clamp(2.5rem, 5vw, 4.5rem);
+    }
+
+    .hero :global(.hero__phone) {
+      display: block;
+      width: clamp(15rem, 23vw, 18.75rem);
+    }
+  }
+
+  @media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
+    .hero :global(.hero__phone) {
+      animation: hero-phone-in 0.9s var(--ease-out) 0.1s both;
+    }
+  }
+
+  @keyframes hero-phone-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
     }
   }
 </style>
