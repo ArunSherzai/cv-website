@@ -9,7 +9,7 @@ export const site = {
   // Offener Punkt aus BRIEF.md: aktueller Lebenslauf fehlt noch.
   // Sobald das PDF in public/ liegt, hier den Pfad eintragen (z. B. '/lebenslauf-arun-sherzai.pdf').
   // Solange null, wird der Button nicht angezeigt.
-  cvPdf: null as string | null,
+  cvPdf: '/Lebenslauf_Arun_Sherzai.pdf' as string | null,
 };
 
 export const navLinks = [

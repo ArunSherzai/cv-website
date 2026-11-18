@@ -1,6 +1,6 @@
 ---
 // Kontakt laut BRIEF.md, Abschnitt 4.7. Keine privaten Daten (4.8).
-// Offene Punkte: Lebenslauf-PDF und LinkedIn fehlen noch und werden erst angezeigt, wenn sie da sind.
+// Lebenslauf: Version ohne Telefonnummer (public/). Offener Punkt: LinkedIn fehlt noch.
 import { site } from '../data/site';
 ---
 
@@ -11,17 +11,20 @@ import { site } from '../data/site';
       <a href={`mailto:${site.email}`}>{site.email}</a>
     </p>
 
+    {
+      site.cvPdf && (
+        <div class="kontakt__actions">
+          <a class="btn btn--on-dark" href={site.cvPdf}>
+            Lebenslauf (PDF)
+          </a>
+        </div>
+      )
+    }
+
     <ul class="kontakt__links">
       <li>
         <a href={site.github} rel="noopener">GitHub</a>
       </li>
-      {
-        site.cvPdf && (
-          <li>
-            <a href={site.cvPdf}>Lebenslauf (PDF)</a>
-          </li>
-        )
-      }
       <li>Wien</li>
     </ul>
   </div>
@@ -57,6 +60,15 @@ import { site } from '../data/site';
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.12em;
+  }
+
+  .kontakt__actions {
+    margin-top: 2rem;
+  }
+
+  .btn--on-dark {
+    background: var(--on-dark);
+    color: var(--dark);
   }
 
   .kontakt__links {

@@ -7,3 +7,6 @@ dist/
 # Vorerst nicht versioniert, weil das Repo später öffentlich wird (siehe BRIEF.md, offene Punkte):
 assets/zertifikate/
 assets/plantup/team-pitch-*
+# Lebenslauf-Quellen: Bewerbungs-PDF und build_cv.py enthalten die Telefonnummer.
+# Auf die Website kommt nur die Kopie ohne Telefonnummer in public/.
+assets/lebenslauf/
