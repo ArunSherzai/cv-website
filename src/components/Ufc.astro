@@ -1,49 +1,20 @@
 ---
 // Alle Texte laut BRIEF.md, Abschnitt 4.3. „Mein Anteil“ wörtlich, nichts ergänzen.
+// Präsentation laut Briefing: als Machine-Learning-Projekt führen (ML zuerst, nicht als UI-Projekt),
+// daher Kennzeichnung im Untertitel und Ergebnisse vor dem Fließtext.
 // Offener Punkt: Screenshot vom Kämpfervergleich fehlt, bis dahin die typografische Ergebnis-Karte.
 const stack = ['Python', 'pandas', 'scikit-learn', 'Streamlit', 'BeautifulSoup', 'Matplotlib'];
 ---
 
 <section class="section ufc" id="ufc" aria-labelledby="ufc-title">
   <div class="container">
-    <p class="eyebrow">Gemeinsam mit David Vukasovic · 2026</p>
+    <p class="eyebrow">Machine-Learning-Projekt · Gemeinsam mit David Vukasovic · 2026</p>
     <h2 class="ufc__title" id="ufc-title">UFC Fight Predictor</h2>
     <p class="ufc__lead">
       Web-App, die den Ausgang von UFC-Kämpfen vorhersagt: Sieger, Runde und Art des Siegs.
     </p>
 
     <div class="ufc__grid">
-      <div class="ufc__text">
-        <p>
-          Grundlage sind 8.427 historische Kämpfe mit 134 Merkmalen. Für zwei frei wählbare Kämpfer
-          berechnet die App eine Vorhersage, erklärt, welche Faktoren den Ausschlag geben, und
-          vergleicht das mit den Wettquoten. Eine Datenpipeline holt neue UFC-Events von
-          ufcstats.com und trainiert die Modelle neu.
-        </p>
-
-        <h3 class="ufc__h3">Mein Anteil</h3>
-        <p>
-          Entwickelt großteils im Pair Programming mit David an einem Rechner. Mein Schwerpunkt: die
-          Oberfläche des Kämpfervergleichs („Tale of the Tape“) und die Datenvisualisierung. Davids
-          Schwerpunkt: Datenbereinigung, Modelle und Datenpipeline.
-        </p>
-
-        <dl class="ufc__facts">
-          <div>
-            <dt class="eyebrow">Tech-Stack</dt>
-            <dd>{stack.join(' · ')}</dd>
-          </div>
-          <div>
-            <dt class="eyebrow">Code</dt>
-            <dd>
-              <a class="link" href="https://github.com/ArunSherzai/UFCPrediction" rel="noopener">
-                github.com/ArunSherzai/UFCPrediction
-              </a>
-            </dd>
-          </div>
-        </dl>
-      </div>
-
       <div class="ufc__card">
         <p class="ufc__card-label">Ergebnisse</p>
         <p class="ufc__big">60,5&nbsp;%</p>
@@ -71,6 +42,37 @@ const stack = ['Python', 'pandas', 'scikit-learn', 'Streamlit', 'BeautifulSoup',
           </li>
         </ul>
       </div>
+      <div class="ufc__text">
+        <p>
+          Grundlage sind 8.427 historische Kämpfe mit 134 Merkmalen. Für zwei frei wählbare Kämpfer
+          berechnet die App eine Vorhersage, erklärt, welche Faktoren den Ausschlag geben, und
+          vergleicht das mit den Wettquoten. Eine Datenpipeline holt neue UFC-Events von
+          ufcstats.com und trainiert die Modelle neu.
+        </p>
+
+        <h3 class="ufc__h3">Mein Anteil</h3>
+        <p>
+          Gemeinsam mit David im Pair Programming an einem Rechner entwickelt: Daten, Modelle und
+          App. Zusätzlich mein eigener Schwerpunkt: die Oberfläche des Kämpfervergleichs („Tale of
+          the Tape“) und die Datenvisualisierung (u. a. das „Alters-Paradoxon“-Diagramm).
+        </p>
+
+        <dl class="ufc__facts">
+          <div>
+            <dt class="eyebrow">Tech-Stack</dt>
+            <dd>{stack.join(' · ')}</dd>
+          </div>
+          <div>
+            <dt class="eyebrow">Code</dt>
+            <dd>
+              <a class="link" href="https://github.com/ArunSherzai/UFCPrediction" rel="noopener">
+                github.com/ArunSherzai/UFCPrediction
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
     </div>
   </div>
 </section>
@@ -208,7 +210,7 @@ const stack = ['Python', 'pandas', 'scikit-learn', 'Streamlit', 'BeautifulSoup',
 
   @media (min-width: 60rem) {
     .ufc__grid {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+      grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
       gap: 4.5rem;
       align-items: start;
       margin-top: 4rem;
