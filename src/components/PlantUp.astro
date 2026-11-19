@@ -382,6 +382,69 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
     text-wrap: pretty;
   }
 
+  /* Nur Handy (unter 640 px): PlantUp kompakter, damit die Sektion nicht zu lang wird. */
+  @media (max-width: 39.99rem) {
+    .pu-head__about {
+      display: none;
+    }
+
+    /* Gesundheitskarten wischbar wie die Screens, randlos bis zum Bildschirmrand */
+    .pu-sprig__cards {
+      display: flex;
+      gap: 0.875rem;
+      margin-inline: calc(-1 * var(--gutter));
+      padding-inline: var(--gutter);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--gutter);
+      scrollbar-width: none;
+    }
+
+    .pu-sprig__cards::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pu-sprig__cards li {
+      flex: 0 0 82%;
+      scroll-snap-align: start;
+    }
+
+    /* Kennzahlen in einer Zeile */
+    .pu-zahlen {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.875rem;
+      margin-top: 2.5rem;
+      padding-block: 1rem;
+    }
+
+    /* Werte oben bündig, auch wenn sie unterschiedlich viele Zeilen brauchen */
+    .pu-zahlen div {
+      justify-content: flex-end;
+    }
+
+    .pu-zahlen dt {
+      font-size: 0.6875rem;
+      line-height: 1.35;
+    }
+
+    .pu-zahlen dd {
+      font-size: 0.875rem;
+      line-height: 1.3;
+      letter-spacing: -0.03em;
+    }
+
+    /* Stack, Pitch, Team, Code enger */
+    .pu-facts > div {
+      padding-block: 0.625rem;
+    }
+
+    .pu-facts dd {
+      margin-top: 0.125rem;
+      font-size: 0.9375rem;
+      line-height: 1.4;
+    }
+  }
+
   @media (min-width: 48rem) {
     .pu-head {
       display: grid;
