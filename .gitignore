@@ -10,3 +10,7 @@ assets/plantup/team-pitch-*
 # Lebenslauf-Quellen: Bewerbungs-PDF und build_cv.py enthalten die Telefonnummer.
 # Auf die Website kommt nur die Kopie ohne Telefonnummer in public/.
 assets/lebenslauf/
+
+# Interne Arbeitsgrundlagen, bleiben nur lokal (Repo ist öffentlich):
+BRIEF.md
+CLAUDE.md
