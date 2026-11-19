@@ -44,11 +44,11 @@ const skills = [
 
 <section class="section section--line" id="erfahrung" aria-labelledby="erfahrung-title">
   <div class="container">
-    <h2 class="section__title" id="erfahrung-title">Erfahrung</h2>
+    <h2 class="section__title" data-reveal id="erfahrung-title">Erfahrung</h2>
     <ol class="rows">
       {
         erfahrung.map((e) => (
-          <li>
+          <li data-reveal>
             <p class="rows__meta">{e.zeit}</p>
             <div>
               <h3 class="rows__title">
@@ -73,7 +73,7 @@ const skills = [
 
 <section class="section section--line" id="ausbildung" aria-labelledby="ausbildung-title">
   <div class="container">
-    <h2 class="section__title" id="ausbildung-title">Ausbildung</h2>
+    <h2 class="section__title" data-reveal id="ausbildung-title">Ausbildung</h2>
     <ol class="rows">
       <li>
         <p class="rows__meta">seit 09/2026</p>
@@ -103,7 +103,7 @@ const skills = [
 
 <section class="section section--line" id="skills" aria-labelledby="skills-title">
   <div class="container">
-    <h2 class="section__title" id="skills-title">Skills</h2>
+    <h2 class="section__title" data-reveal id="skills-title">Skills</h2>
     <dl class="rows">
       {
         skills.map((s) => (
