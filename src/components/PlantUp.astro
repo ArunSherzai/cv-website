@@ -3,6 +3,7 @@ import Phone from './Phone.astro';
 import healthScreen from '../../assets/plantup/plantup-health.png';
 import feedScreen from '../../assets/plantup/plantup-feed.png';
 import statsScreen from '../../assets/plantup/plantup-stats.png';
+import { asset } from '../data/site';
 
 // Alle Texte laut BRIEF.md, Abschnitt 4.2. „Mein Anteil“ wörtlich, nichts ergänzen.
 const screens = [
@@ -137,8 +138,8 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
         <!-- Standbild zuerst; die Animation (466 KB) wird erst geladen, wenn die Sektion sichtbar wird. -->
         <img
           class="pu-sprig__img"
-          src="/img/sprig-happy-still.webp"
-          data-anim="/img/sprig-happy.webp"
+          src={asset('img/sprig-happy-still.webp')}
+          data-anim={asset('img/sprig-happy.webp')}
           width="400"
           height="450"
           alt="Maskottchen Sprig, eine fröhliche grüne Figur mit Blatt auf dem Kopf"
@@ -157,12 +158,12 @@ const team = ['Abd-Ulrahman Behari', 'Arun Sherzai', 'Dennis Frenzel', 'Richard 
                 preload="none"
                 width="572"
                 height="244"
-                poster={`/video/${v.file}.webp`}
+                poster={asset(`video/${v.file}.webp`)}
                 aria-label={`Animierte Gesundheitskarte mit Sprig bei ${v.state} Pflanzengesundheit`}
                 data-sprig
               >
-                <source src={`/video/${v.file}.mp4`} type="video/mp4" />
-                <source src={`/video/${v.file}.webm`} type="video/webm" />
+                <source src={asset(`video/${v.file}.mp4`)} type="video/mp4" />
+                <source src={asset(`video/${v.file}.webm`)} type="video/webm" />
               </video>
             </li>
           ))

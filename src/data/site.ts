@@ -1,4 +1,8 @@
 // Zentrale Angaben, die an mehreren Stellen gebraucht werden.
+/** Pfad zu einer Datei in public/, mit Basis-Pfad (GitHub Pages liegt unter /cv-website/). */
+export const asset = (path: string) =>
+  import.meta.env.BASE_URL.replace(/\/?$/, '/') + path.replace(/^\//, '');
+
 export const site = {
   name: 'Arun Sherzai',
   title: 'Arun Sherzai · Informatik-Student in Wien',
@@ -9,7 +13,7 @@ export const site = {
   // Offener Punkt aus BRIEF.md: aktueller Lebenslauf fehlt noch.
   // Sobald das PDF in public/ liegt, hier den Pfad eintragen (z. B. '/lebenslauf-arun-sherzai.pdf').
   // Solange null, wird der Button nicht angezeigt.
-  cvPdf: '/Lebenslauf_Arun_Sherzai.pdf' as string | null,
+  cvPdf: asset('Lebenslauf_Arun_Sherzai.pdf') as string | null,
 };
 
 export const navLinks = [
